@@ -1,0 +1,16 @@
+{
+  "name": "inventory-service",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@opentelemetry/api": "1.4.1",
+    "@opentelemetry/sdk-node": "0.37.0",
+    "@opentelemetry/auto-instrumentations-node": "0.37.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "0.37.0"
+  }
+}
