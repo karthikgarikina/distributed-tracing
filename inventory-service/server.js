@@ -26,6 +26,10 @@ app.post('/inventory/reserve', (req, res) => {
     return res.status(400).json({ error: "Out of stock" });
   }
 
+  if (span) {
+    span.addEvent("inventory_checked");
+  }
+
   stock[sku] -= quantity;
   res.status(200).json({ status: "RESERVED" });
 });

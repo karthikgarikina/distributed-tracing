@@ -43,7 +43,7 @@ services.
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/karthikgarikina/distributed-tracing
 cd distributed-tracing
 ```
 ## 2️⃣ Build and Start Services
@@ -55,53 +55,74 @@ Wait until all services show **healthy** status.
 
 # 🌐 Service URLs
 
-  Service       URL
-  ------------- ------------------------
-  API Gateway   http://localhost:8080
-  Jaeger UI     http://localhost:16686
-  PostgreSQL    localhost:5432
-
+| Service       | URL                       |
+|---------------|---------------------------|
+| API Gateway   | http://localhost:8080     |
+| Jaeger UI     | http://localhost:16686    |
+| PostgreSQL    | localhost:5432            |
 ------------------------------------------------------------------------
 
 # 📮 API Endpoints
 
 ## 🔹 Health Checks
 
-GET /health
+**GET /health**
 
-Available in: - API Gateway - Inventory Service - Order Service -
-Notification Service
+Available in:
+- API Gateway → http://localhost:8080/health
+- Inventory Service → http://localhost:8001/health (internal: inventory_service:8000)
+- Order Service → http://localhost:8002/health (internal: order_service:8000)
+- Notification Service → http://localhost:8003/health (internal: notification_service:8000)
 
-------------------------------------------------------------------------
+---
 
 ## 🔹 Create Order
 
-POST http://localhost:8080/api/orders
+**POST http://localhost:8080/api/orders**
 
 ### Request Body:
 
-``` json
+```json
 {
-  "userId": "user-1",
+  "userId": 1,
   "email": "test@example.com",
   "items": [
     {
       "sku": "SKU123",
-      "quantity": 1
+      "quantity": 1,
+      "price": 100
     }
   ]
 }
 ```
 
-### Response:
+### Response (201 Created):
 
-``` json
+```json
 {
   "orderId": "generated-uuid",
   "status": "CREATED",
   "traceId": "generated-trace-id"
 }
 ```
+
+---
+
+## 🔹 Get Trace Details
+
+**GET http://localhost:16686/api/traces/{traceId}**
+
+Example:
+
+```
+http://localhost:16686/api/traces/c9b76112e369def12ae0a40063d9e954
+```
+
+Returns full trace JSON including all spans across:
+- api-gateway
+- inventory-service
+- order-service
+- notification-service
 
 ------------------------------------------------------------------------
 
