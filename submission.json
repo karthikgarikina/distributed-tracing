@@ -1,0 +1,12 @@
+{
+  "serviceLanguages": {
+    "api_gateway": "Node.js",
+    "order_service": "Python",
+    "inventory_service": "Node.js",
+    "notification_service": "Python"
+  },
+  "testData": {
+    "validOrderId": "Generated dynamically after POST /api/orders",
+    "traceIdForValidOrder": "Returned in API response after order creation" 
+  }
+}
