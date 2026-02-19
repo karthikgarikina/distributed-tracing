@@ -59,7 +59,7 @@ Wait until all services show **healthy** status.
 |---------------|---------------------------|
 | API Gateway   | http://localhost:8080     |
 | Jaeger UI     | http://localhost:16686    |
-| PostgreSQL    | localhost:5432            |
+| PostgreSQL    | http://localhost:5432     |
 ------------------------------------------------------------------------
 
 # 📮 API Endpoints
